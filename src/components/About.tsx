@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { CheckCircle, Building2, Users2 } from "lucide-react";
+import { CheckCircle, Users2 } from "lucide-react";
+import managingPartnerImage from "@/assets/managing-partner.jpeg";
 
 const About = () => {
   const ref = useRef(null);
@@ -69,13 +70,18 @@ const About = () => {
             className="space-y-6"
           >
             <div className="bg-card rounded-2xl p-8 shadow-elevated border border-border">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-14 h-14 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
-                  <Building2 className="h-7 w-7 text-primary-foreground" />
+              <div className="flex items-start gap-5 mb-4">
+                <div className="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0 border-2 border-accent/20">
+                  <img 
+                    src={managingPartnerImage} 
+                    alt="CPA Leopold Gervase Bulondo - Managing Partner" 
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
                 <div>
                   <h3 className="font-serif text-xl font-semibold text-foreground">Managing Partner</h3>
                   <p className="text-accent font-medium">CPA Leopold Gervase Bulondo</p>
+                  <p className="text-xs text-muted-foreground mt-1">ACPA-PP Reg. No. 898</p>
                 </div>
               </div>
               <p className="text-muted-foreground">
