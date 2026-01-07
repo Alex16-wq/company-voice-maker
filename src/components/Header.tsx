@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import lagheLogo from "@/assets/laghe-logo.png";
+import lagheLogo from "@/assets/laghe-logo.jpg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,8 +19,12 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center">
-            <img src={lagheLogo} alt="LAGHE Consult - Certified Public Accountants" className="h-12 sm:h-16 w-auto" />
+          <a href="#home" className="flex items-center gap-3">
+            <img src={lagheLogo} alt="LAGHE Consult Logo" className="h-12 w-auto" />
+            <div className="hidden sm:block">
+              <p className="font-serif text-lg font-semibold text-foreground leading-tight">LAGHE CONSULT</p>
+              <p className="text-xs text-muted-foreground">Certified Public Accountants</p>
+            </div>
           </a>
 
           {/* Desktop Navigation */}
