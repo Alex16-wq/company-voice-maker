@@ -1,4 +1,4 @@
-import lagheLogo from "@/assets/laghe-logo.jpg";
+import lagheLogo from "@/assets/laghe-logo.png";
 
 const Footer = () => {
   return (
@@ -7,12 +7,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <img src={lagheLogo} alt="LAGHE Consult Logo" className="h-12 w-auto bg-cream rounded-lg p-1" />
-              <div>
-                <p className="font-serif text-xl font-semibold text-cream">LAGHE CONSULT</p>
-                <p className="text-sm text-cream/60">Certified Public Accountants</p>
-              </div>
+            <div className="mb-6">
+              <img src={lagheLogo} alt="LAGHE Consult - Certified Public Accountants" className="h-14 w-auto bg-cream rounded-lg p-2" />
             </div>
             <p className="text-cream/70 max-w-md">
               A registered Consulting Firm of experienced Certified Public Accountants and 
