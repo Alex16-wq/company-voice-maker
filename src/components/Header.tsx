@@ -20,7 +20,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="#home" className="flex items-center">
-            <img src={lagheLogo} alt="LAGHE Consult - Certified Public Accountants" className="h-14 w-auto" />
+            <img src={lagheLogo} alt="LAGHE Consult - Certified Public Accountants" className="h-12 sm:h-16 w-auto" />
           </a>
 
           {/* Desktop Navigation */}
