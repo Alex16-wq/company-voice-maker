@@ -70,22 +70,22 @@ const Hero = () => {
             <div className="flex items-center justify-center gap-3 px-6 py-4 bg-cream/5 rounded-xl border border-cream/10">
               <Shield className="h-8 w-8 text-accent" />
               <div className="text-left">
-                <p className="text-2xl font-bold text-cream">NBAA</p>
-                <p className="text-sm text-cream/60">Registered</p>
+                <p className="text-2xl font-bold text-cream">15+</p>
+                <p className="text-sm text-cream/60">Years Experience</p>
               </div>
             </div>
             <div className="flex items-center justify-center gap-3 px-6 py-4 bg-cream/5 rounded-xl border border-cream/10">
               <Award className="h-8 w-8 text-accent" />
               <div className="text-left">
-                <p className="text-2xl font-bold text-cream">PF234</p>
-                <p className="text-sm text-cream/60">Audit Firm Reg.</p>
+                <p className="text-2xl font-bold text-cream">100+</p>
+                <p className="text-sm text-cream/60">Clients Served</p>
               </div>
             </div>
             <div className="flex items-center justify-center gap-3 px-6 py-4 bg-cream/5 rounded-xl border border-cream/10">
               <Users className="h-8 w-8 text-accent" />
               <div className="text-left">
-                <p className="text-2xl font-bold text-cream">80+</p>
-                <p className="text-sm text-cream/60">Clients Served</p>
+                <p className="text-2xl font-bold text-cream">20+</p>
+                <p className="text-sm text-cream/60">Industries</p>
               </div>
             </div>
           </motion.div>

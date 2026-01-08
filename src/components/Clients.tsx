@@ -283,19 +283,23 @@ const Clients = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 text-center"
         >
           <div>
-            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">{totalClients}+</p>
+            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">15+</p>
+            <p className="text-cream/70">Years Experience</p>
+          </div>
+          <div>
+            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">100+</p>
             <p className="text-cream/70">Clients Served</p>
           </div>
           <div>
-            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">8+</p>
-            <p className="text-cream/70">Regions Covered</p>
-          </div>
-          <div>
-            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">{Object.keys(clientsByCategory).length}</p>
+            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">20+</p>
             <p className="text-cream/70">Industries</p>
           </div>
           <div>
-            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">7</p>
+            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">8+</p>
+            <p className="text-cream/70">Regions</p>
+          </div>
+          <div>
+            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">10+</p>
             <p className="text-cream/70">Core Services</p>
           </div>
         </motion.div>
