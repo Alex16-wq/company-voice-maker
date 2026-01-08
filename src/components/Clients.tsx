@@ -1,16 +1,156 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Building, Plane, Stethoscope, GraduationCap, Truck, Banknote } from "lucide-react";
+import { useRef, useState } from "react";
+import { Building, Plane, Stethoscope, GraduationCap, Truck, Banknote, Wifi, ShoppingBag, Shield, Factory, Leaf, ChevronDown, ChevronUp } from "lucide-react";
 
-const sectors = [
-  { icon: Building, label: "Construction", count: "15+" },
-  { icon: Plane, label: "Safari & Tourism", count: "10+" },
-  { icon: Stethoscope, label: "Healthcare", count: "8+" },
-  { icon: GraduationCap, label: "Education", count: "6+" },
-  { icon: Truck, label: "Transport & Logistics", count: "8+" },
-  { icon: Banknote, label: "Microfinance", count: "5+" },
-];
+type Client = {
+  name: string;
+  location: string;
+  business: string;
+};
+
+const clientsByCategory: Record<string, { icon: any; clients: Client[] }> = {
+  "Construction": {
+    icon: Building,
+    clients: [
+      { name: "APE Engineers Services", location: "Iringa", business: "Construction Service" },
+      { name: "Build All Contractors", location: "DSM", business: "Construction Service" },
+      { name: "COMT Entrepreneurs Company Ltd", location: "Iringa", business: "Construction Service" },
+      { name: "GNMS Construction Company", location: "Iringa", business: "Construction Service" },
+      { name: "Impreza Di Construzion Ing. E. Mantov", location: "Iringa", business: "Construction Service" },
+      { name: "Infrabuild Contractors Limited", location: "DSM", business: "Construction Service" },
+      { name: "Justa Contractors", location: "Iringa", business: "Construction Service" },
+      { name: "Kasi Engineering", location: "Iringa", business: "Construction Service" },
+      { name: "Muungano General Enterprise Company", location: "Iringa", business: "Construction Service" },
+      { name: "Priparm Company Limited", location: "Iringa", business: "Construction Service" },
+      { name: "Sama Construction", location: "Iringa", business: "Construction Service" },
+      { name: "Shakazulu International Company Ltd", location: "Iringa", business: "Construction Service" },
+      { name: "Vapto Enterprise", location: "Iringa", business: "Construction Service" },
+    ]
+  },
+  "Safari & Tourism": {
+    icon: Plane,
+    clients: [
+      { name: "Foxtreks Ltd", location: "Iringa", business: "Safari Camp & Hotels" },
+      { name: "Fly Sky Airlink Ltd", location: "Iringa", business: "Air Charter Services" },
+      { name: "Paul Tickner Photography & Safaris", location: "Iringa", business: "Safari Camp & Hotels" },
+      { name: "River Valley Camps Ltd", location: "Iringa", business: "Safari Camp & Hotels" },
+      { name: "Ruaha Safari Camp Ltd", location: "Iringa", business: "Safari Camp & Hotels" },
+      { name: "Spring Valley", location: "Iringa", business: "Safari Camp & Hotels" },
+      { name: "Tandala Tented Camps & Safaris", location: "Iringa", business: "Safari Camp & Hotels" },
+      { name: "Tatanca Safaris Ltd", location: "Iringa", business: "Tourist Services" },
+    ]
+  },
+  "Healthcare & Pharma": {
+    icon: Stethoscope,
+    clients: [
+      { name: "Ipogolo Dispensary", location: "Iringa", business: "Health Services" },
+      { name: "Miyomboni Pharmacy Limited", location: "Iringa", business: "Pharmaceutical Services" },
+      { name: "Polyclinic Healthcare", location: "Iringa", business: "Health Services" },
+      { name: "Rondo Investment Ltd", location: "DSM", business: "Pharmaceutical Services" },
+      { name: "St Therese", location: "Iringa", business: "Health Services" },
+    ]
+  },
+  "Education": {
+    icon: GraduationCap,
+    clients: [
+      { name: "Hyperlink Primary School", location: "Iringa", business: "School Services" },
+      { name: "Iringa International School", location: "Iringa", business: "School Services" },
+      { name: "New Vibe Pre & Primary School", location: "DSM", business: "School Services" },
+      { name: "Sipto Pre & Primary School", location: "Iringa", business: "School Services" },
+      { name: "Southern Highlands School", location: "Iringa", business: "School Services" },
+    ]
+  },
+  "Transport & Logistics": {
+    icon: Truck,
+    clients: [
+      { name: "Crystal Freight Services", location: "DSM", business: "Clearing & Forwarding" },
+      { name: "Frod Transporters", location: "Iringa", business: "Transport Services" },
+      { name: "General Shamy Investment", location: "DSM", business: "Clearing & Forwarding" },
+      { name: "Integrity Logistics", location: "DSM", business: "Transport Services" },
+      { name: "Kahe International Limited", location: "DSM", business: "Clearing & Forwarding" },
+      { name: "Tuxford Haulage Ltd", location: "DSM", business: "Transport Services" },
+    ]
+  },
+  "Microfinance": {
+    icon: Banknote,
+    clients: [
+      { name: "BFS Company Limited", location: "Iringa", business: "Microcredit Financing" },
+      { name: "Deo Finance Limited", location: "Iringa", business: "Microcredit Financing" },
+      { name: "Karama Credit Company Limited", location: "Iringa", business: "Microcredit Financing" },
+      { name: "Ramos Microcredit Limited", location: "Iringa", business: "Microcredit Financing" },
+    ]
+  },
+  "ICT & Communication": {
+    icon: Wifi,
+    clients: [
+      { name: "4Pesa Limited", location: "DSM", business: "Internet Communication" },
+      { name: "Fair Point Communication", location: "Iringa", business: "Internet Communication" },
+      { name: "Infosys IPS (T) Ltd", location: "DSM", business: "Computer & Software" },
+      { name: "Samwel Mkuwa T/A Sisa Solution", location: "Iringa", business: "Internet Communication" },
+      { name: "YTP Production", location: "Iringa", business: "Internet Communication" },
+    ]
+  },
+  "Retail & Trading": {
+    icon: ShoppingBag,
+    clients: [
+      { name: "Assad Spares", location: "Iringa", business: "Groceries" },
+      { name: "Augustino Christopher Sanga T/A SMA", location: "Iringa", business: "Groceries" },
+      { name: "Burhani Machinery & Tractor Parts", location: "Iringa", business: "Machinery & Spares" },
+      { name: "Emachango Traders Company Ltd", location: "Iringa", business: "Food and Groceries" },
+      { name: "Foecoe", location: "Iringa", business: "Groceries" },
+      { name: "Hautevolt Limited", location: "DSM", business: "Electric Accessories" },
+      { name: "Kindola Auto Spares & Accessories", location: "Iringa", business: "Accessories & Spares" },
+      { name: "Mchungwa Hardware", location: "Iringa", business: "Hardware" },
+      { name: "Mhapa Enterprises", location: "Iringa", business: "Food and Groceries" },
+      { name: "Mibham Trading", location: "DSM", business: "Electric Accessories" },
+      { name: "Mohamed Salim Arbi", location: "Iringa", business: "Food and Groceries" },
+      { name: "Mr. Cha Bei Poa", location: "Iringa", business: "Food and Groceries" },
+      { name: "OCM", location: "Iringa", business: "Food and Groceries" },
+      { name: "Petro Lubida", location: "Iringa", business: "Food and Groceries" },
+      { name: "Rahim Fatael Jaffer", location: "Iringa", business: "Matress & Garments" },
+      { name: "Rahim Premji", location: "Iringa", business: "Ice Cream Parlour" },
+      { name: "Mary Idan Sanga", location: "Iringa", business: "Food and Groceries" },
+    ]
+  },
+  "Security Services": {
+    icon: Shield,
+    clients: [
+      { name: "Husuma Security", location: "Iringa", business: "Security Services" },
+      { name: "Ngoti Green Gill Estate Co. Ltd", location: "Iringa", business: "Security Services" },
+      { name: "Wete Security Technology Co. Ltd", location: "Iringa", business: "Security Services" },
+    ]
+  },
+  "Agriculture & Farming": {
+    icon: Leaf,
+    clients: [
+      { name: "Bartholomeo Pilla", location: "Iringa", business: "Farming Support Service" },
+      { name: "Eleni Apostolos Vasilikakis", location: "Iringa", business: "Tobacco Farming" },
+      { name: "Kibebe Farms Ltd", location: "Iringa", business: "Cattle Farming" },
+      { name: "Kidamali & Kipera Farms", location: "Iringa", business: "Tobacco Farming" },
+      { name: "Lawrieson Investments Limited", location: "Iringa", business: "Avocado Farmer" },
+      { name: "Makalala Farm", location: "Iringa", business: "Tobacco Farming" },
+      { name: "Ndoto Farms Ltd", location: "Iringa", business: "Cattle Farming" },
+    ]
+  },
+  "Other Services": {
+    icon: Factory,
+    clients: [
+      { name: "Adams & Adrian Limited", location: "DSM", business: "Consulting Services" },
+      { name: "ASTE Insurance Brokers Co. Ltd", location: "DSM", business: "Insurance Broker" },
+      { name: "Chegamila Investment", location: "Iringa", business: "Garage Services" },
+      { name: "Dar Huduma", location: "DSM", business: "Water Pumps" },
+      { name: "Hanny Abdulaziz Salum", location: "Iringa", business: "Fine Skin Services" },
+      { name: "Haste Taste Too Restaurant", location: "Iringa", business: "Restaurant" },
+      { name: "Hope Service Station", location: "Iringa", business: "Petrol Station" },
+      { name: "Kidamali Maji Company Ltd", location: "Iringa", business: "Mineral Water Bottling" },
+      { name: "LVC Company Limited", location: "DSM", business: "Explosive Seller" },
+      { name: "Southern Tanzania Elephants Program", location: "Iringa", business: "Wild Animals Protection" },
+      { name: "Stade Injector Pump", location: "Iringa", business: "Injector Pump Services" },
+      { name: "Tanzathai IR Co Ltd", location: "Iringa", business: "Mineral Water Bottling" },
+    ]
+  },
+};
 
 const locations = [
   "Dar es Salaam",
@@ -25,7 +165,17 @@ const locations = [
 
 const Clients = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+
+  const toggleCategory = (category: string) => {
+    setExpandedCategory(expandedCategory === category ? null : category);
+  };
+
+  const totalClients = Object.values(clientsByCategory).reduce(
+    (sum, cat) => sum + cat.clients.length,
+    0
+  );
 
   return (
     <section id="clients" className="py-24 bg-primary" ref={ref}>
@@ -43,26 +193,58 @@ const Clients = () => {
             Trusted Across <span className="text-gradient-gold">Industries</span>
           </h2>
           <p className="text-lg text-cream/70">
-            We've proudly served over 80 clients across diverse sectors, building long-term 
+            We've proudly served over {totalClients} clients across diverse sectors, building long-term 
             relationships based on trust, expertise, and exceptional service delivery.
           </p>
         </motion.div>
 
-        {/* Sectors Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
-          {sectors.map((sector, index) => {
-            const Icon = sector.icon;
+        {/* Client Categories with Expandable Lists */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+          {Object.entries(clientsByCategory).map(([category, data], index) => {
+            const Icon = data.icon;
+            const isExpanded = expandedCategory === category;
             return (
               <motion.div
-                key={sector.label}
+                key={category}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-cream/5 border border-cream/10 rounded-xl p-6 text-center hover:bg-cream/10 transition-colors"
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="bg-cream/5 border border-cream/10 rounded-xl overflow-hidden"
               >
-                <Icon className="h-8 w-8 text-accent mx-auto mb-3" />
-                <p className="text-cream font-medium text-sm mb-1">{sector.label}</p>
-                <p className="text-accent text-lg font-bold">{sector.count}</p>
+                <button
+                  onClick={() => toggleCategory(category)}
+                  className="w-full p-5 flex items-center justify-between hover:bg-cream/10 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <Icon className="h-6 w-6 text-accent" />
+                    <div className="text-left">
+                      <p className="text-cream font-medium">{category}</p>
+                      <p className="text-accent text-sm">{data.clients.length} clients</p>
+                    </div>
+                  </div>
+                  {isExpanded ? (
+                    <ChevronUp className="h-5 w-5 text-cream/50" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-cream/50" />
+                  )}
+                </button>
+                {isExpanded && (
+                  <div className="px-5 pb-5 border-t border-cream/10">
+                    <div className="max-h-60 overflow-y-auto mt-3 space-y-2">
+                      {data.clients.map((client, idx) => (
+                        <div
+                          key={idx}
+                          className="text-sm py-2 px-3 rounded-lg bg-cream/5 hover:bg-cream/10 transition-colors"
+                        >
+                          <p className="text-cream font-medium">{client.name}</p>
+                          <p className="text-cream/50 text-xs">
+                            {client.location} • {client.business}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </motion.div>
             );
           })}
@@ -101,7 +283,7 @@ const Clients = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 text-center"
         >
           <div>
-            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">80+</p>
+            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">{totalClients}+</p>
             <p className="text-cream/70">Clients Served</p>
           </div>
           <div>
@@ -109,7 +291,7 @@ const Clients = () => {
             <p className="text-cream/70">Regions Covered</p>
           </div>
           <div>
-            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">15+</p>
+            <p className="text-4xl md:text-5xl font-bold text-accent mb-2">{Object.keys(clientsByCategory).length}</p>
             <p className="text-cream/70">Industries</p>
           </div>
           <div>
