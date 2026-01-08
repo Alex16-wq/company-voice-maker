@@ -19,12 +19,8 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3">
-            <img src={lagheLogo} alt="LAGHE Consult Logo" className="h-16 w-auto object-contain contrast-125 saturate-110" />
-            <div className="hidden sm:block">
-              <p className="font-serif text-lg font-semibold text-foreground leading-tight">LAGHE CONSULT</p>
-              <p className="text-xs text-muted-foreground">Certified Public Accountants</p>
-            </div>
+          <a href="#home" className="flex items-center">
+            <img src={lagheLogo} alt="LAGHE Consult Logo" className="h-16 w-auto object-contain" />
           </a>
 
           {/* Desktop Navigation */}
