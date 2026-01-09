@@ -55,6 +55,9 @@ const Hero = () => {
                 Explore Our Services <ArrowRight className="h-5 w-5" />
               </a>
             </Button>
+            <Button size="lg" className="bg-cream text-primary hover:bg-cream/90 text-base px-8">
+              <a href="#contact">Contact Us Today</a>
+            </Button>
           </motion.div>
 
           {/* Trust Indicators */}
