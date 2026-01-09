@@ -84,11 +84,15 @@ const About = () => {
                   <p className="text-xs text-muted-foreground mt-1">ACPA-PP Reg. No. 898</p>
                 </div>
               </div>
-              <p className="text-muted-foreground">
-                A highly qualified professional in Financial and Management issues with extensive 
-                working experience in locally and internationally owned Private Companies and 
-                Parastatal Organizations. Registered as Associate Certified Public Accountant in 
-                Public Practices (ACPA-PP) with registration number 898.
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                A highly respected finance and management expert with decades of experience working 
+                with both locally and internationally owned private companies as well as parastatal 
+                organizations. He is a Registered Associate Certified Public Accountant in Public 
+                Practice (Registration No. 898) and brings deep expertise in financial management, 
+                corporate governance, compliance, and strategic advisory. Over the course of his 
+                career, he has led and supported organizations across multiple sectors, providing 
+                practical, results-driven solutions that strengthen financial systems, improve 
+                operational efficiency, and support sustainable growth.
               </p>
             </div>
 
