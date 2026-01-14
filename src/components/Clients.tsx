@@ -33,6 +33,7 @@ const clientsByCategory: Record<string, { icon: any; clients: Client[] }> = {
     clients: [
       { name: "Foxtreks Ltd", location: "Iringa", business: "Safari Camp & Hotels" },
       { name: "Fly Sky Airlink Ltd", location: "Iringa", business: "Air Charter Services" },
+      { name: "Hodi Hodi Bush Camp Limited", location: "Tanzania", business: "Safari Camp & Hotels" },
       { name: "Paul Tickner Photography & Safaris", location: "Iringa", business: "Safari Camp & Hotels" },
       { name: "River Valley Camps Ltd", location: "Iringa", business: "Safari Camp & Hotels" },
       { name: "Ruaha Safari Camp Ltd", location: "Iringa", business: "Safari Camp & Hotels" },
@@ -68,6 +69,7 @@ const clientsByCategory: Record<string, { icon: any; clients: Client[] }> = {
       { name: "Frod Transporters", location: "Iringa", business: "Transport Services" },
       { name: "General Shamy Investment", location: "DSM", business: "Clearing & Forwarding" },
       { name: "Integrity Logistics", location: "DSM", business: "Transport Services" },
+      { name: "K. T. Abri", location: "Tanzania", business: "Transport Services" },
       { name: "Kahe International Limited", location: "DSM", business: "Clearing & Forwarding" },
       { name: "Tuxford Haulage Ltd", location: "DSM", business: "Transport Services" },
     ]
@@ -78,6 +80,7 @@ const clientsByCategory: Record<string, { icon: any; clients: Client[] }> = {
       { name: "BFS Company Limited", location: "Iringa", business: "Microcredit Financing" },
       { name: "Deo Finance Limited", location: "Iringa", business: "Microcredit Financing" },
       { name: "Karama Credit Company Limited", location: "Iringa", business: "Microcredit Financing" },
+      { name: "Mwalongo Micro credit", location: "Tanzania", business: "Microcredit Financing" },
       { name: "Ramos Microcredit Limited", location: "Iringa", business: "Microcredit Financing" },
     ]
   },
@@ -85,6 +88,7 @@ const clientsByCategory: Record<string, { icon: any; clients: Client[] }> = {
     icon: Wifi,
     clients: [
       { name: "4Pesa Limited", location: "DSM", business: "Internet Communication" },
+      { name: "Agrovision Limited", location: "Tanzania", business: "ICT Services" },
       { name: "Fair Point Communication", location: "Iringa", business: "Internet Communication" },
       { name: "Infosys IPS (T) Ltd", location: "DSM", business: "Computer & Software" },
       { name: "Samwel Mkuwa T/A Sisa Solution", location: "Iringa", business: "Internet Communication" },
@@ -126,6 +130,7 @@ const clientsByCategory: Record<string, { icon: any; clients: Client[] }> = {
     clients: [
       { name: "Bartholomeo Pilla", location: "Iringa", business: "Farming Support Service" },
       { name: "Eleni Apostolos Vasilikakis", location: "Iringa", business: "Tobacco Farming" },
+      { name: "Filiacos Farm Limited", location: "Tanzania", business: "Farming" },
       { name: "Kibebe Farms Ltd", location: "Iringa", business: "Cattle Farming" },
       { name: "Kidamali & Kipera Farms", location: "Iringa", business: "Tobacco Farming" },
       { name: "Lawrieson Investments Limited", location: "Iringa", business: "Avocado Farmer" },
